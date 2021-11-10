@@ -1,4 +1,6 @@
 groups:
+  - name: "Storage"
+    description: "Configure Storage for Hello World"
   - name: "Container Images"
     description: "Image to be used for container"
 questions:
