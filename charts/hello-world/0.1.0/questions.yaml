@@ -16,6 +16,7 @@ questions:
           schema:
             type: string
             required: true
+            default: "nginx"
         - variable: tag
           description: "Tag to use for specified image"
           label: "Image Tag"
