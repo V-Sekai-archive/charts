@@ -1,28 +1,36 @@
 groups:
-  - name: "Storage"
-    description: "Configure Storage for Hello World"
-
+  - name: "Container Images"
+    description: "Image to be used for container"
 questions:
-  - variable: appVolumeMounts
-      label: "Hello World Storage"
-      group: "Storage"
-      schema:
-        type: dict
-        attrs:
-          - variable: config
-            label: "Configuration Volume"
-            schema:
-              type: dict
-              attrs:
-                - variable: hostPathEnabled
-                  label: "Enable Custom Host Path for Hello World Volume"
-                  schema:
-                    type: boolean
-                    default: false
-                    show_subquestions_if: true
-                    subquestions:
-                      - variable: hostPath
-                        label: "Host Path for Hello World Volume"
-                        schema:
-                          type: hostpath
-                          required: true
+  - variable: image
+    description: "Docker Image Details"
+    group: "Container Images"
+    schema:
+      type: dict
+      required: true
+      attrs:
+        - variable: repository
+          description: "Docker image repository"
+          label: "Image repository"
+          schema:
+            type: string
+            required: true
+        - variable: tag
+          description: "Tag to use for specified image"
+          label: "Image Tag"
+          schema:
+            type: string
+            default: "latest"
+        - variable: pullPolicy
+          description: "Docker Image Pull Policy"
+          label: "Image Pull Policy"
+          schema:
+            type: string
+            default: "IfNotPresent"
+            enum:
+              - value: "IfNotPresent"
+                description: "Only pull image if not present on host"
+              - value: "Always"
+                description: "Always pull image even if present on host"
+              - value: "Never"
+                description: "Never pull image even if it's not present on host"
