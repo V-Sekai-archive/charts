@@ -33,6 +33,7 @@ spec:
           {{ range $index, $hostPathConfiguration := .Values.extraAppVolumeMounts }}
             - name: extrappvolume-{{ $index }}
               mountPath: {{ $hostPathConfiguration.mountPath }}
+          {{ end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -56,7 +57,7 @@ spec:
         - name: extrappvolume-{{ $index }}
           hostPath:
             path: {{ $hostPathConfiguration.hostPath }}
-        {{- with .Values.nodeSelector }}      
+        {{- with .Values.nodeSelector }}
       {{ end }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
