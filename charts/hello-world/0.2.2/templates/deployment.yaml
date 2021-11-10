@@ -52,11 +52,12 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes: {{ include "common.storage.configureAppVolumes" .Values | nindent 8 }}
-    {{ range $index, $hostPathConfiguration := .Values.extraAppVolumeMounts }}
-      - name: extrappvolume-{{ $index }}
-        hostPath:
-          path: {{ $hostPathConfiguration.hostPath }}
-      {{- with .Values.nodeSelector }}
+      {{ range $index, $hostPathConfiguration := .Values.extraAppVolumeMounts }}
+        - name: extrappvolume-{{ $index }}
+          hostPath:
+            path: {{ $hostPathConfiguration.hostPath }}
+        {{- with .Values.nodeSelector }}      
+      {{ end }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
