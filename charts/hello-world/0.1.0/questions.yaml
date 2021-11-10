@@ -3,6 +3,7 @@ groups:
     description: "Image to be used for container"
 questions:
   - variable: image
+    label: "Enable custom container image"
     description: "Docker Image Details"
     group: "Container Images"
     schema:
