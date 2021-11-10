@@ -1,2 +1,25 @@
 groups:
 questions:
+ - variable: appVolumeMounts
+    label: "Hello World Storage"
+    group: "Storage"
+    schema:
+      type: dict
+      attrs:
+        - variable: config
+          label: "Configuration Volume"
+          schema:
+            type: dict
+            attrs:
+              - variable: hostPathEnabled
+                label: "Enable Custom Host Path for Hello World Volume"
+                schema:
+                  type: boolean
+                  default: false
+                  show_subquestions_if: true
+                  subquestions:
+                    - variable: hostPath
+                      label: "Host Path for Hello World Volume"
+                      schema:
+                        type: hostpath
+                        required: true
