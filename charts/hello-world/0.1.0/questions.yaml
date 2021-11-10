@@ -1,6 +1,7 @@
 groups:
   - name: "Storage"
     description: "Configure Storage for Hello World"
+
 questions:
   - variable: appVolumeMounts
       label: "Hello World Storage"
