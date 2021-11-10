@@ -2,6 +2,30 @@ groups:
   - name: "Container Images"
     description: "Image to be used for container"
 questions:
+  - variable: extraAppVolumeMounts
+    label: "Hello World Extra Host Path Volumes"
+    group: "Storage"
+    schema:
+      type: list
+      items:
+        - variable: extraAppVolume
+          label: "Hello World Host Path Volume"
+          description: "Add an extra host path volume for hello world application"
+          schema:
+            type: dict
+            attrs:
+              - variable: mountPath
+                label: "Mount Path in Pod"
+                description: "Path where the volume will be mounted inside the pod"
+                schema:
+                  type: path
+                  required: true
+              - variable: hostPath
+                label: "Host Path"
+                description: "Host path"
+                schema:
+                  type: hostpath
+                  required: true
   - variable: image
     label: "Enable custom container image"
     description: "Docker Image Details"
